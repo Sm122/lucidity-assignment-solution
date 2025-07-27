@@ -15,9 +15,9 @@ public class RouteService {
     private Map<String, Integer> locationIndex;
     private double[][] travelTimes;
 
-    public RouteResponse findOptimalRoute(Location aman, List<Order> orders) {
+    public RouteResponse findOptimalRoute(Location deliveryExecutive, List<Order> orders) {
         try {
-            if (aman == null || aman.name == null || aman.name.isBlank()) {
+            if (deliveryExecutive == null || deliveryExecutive.name == null || deliveryExecutive.name.isBlank()) {
                 throw new InvalidRequestException("Invalid Aman location: Name and coordinates are required");
             }
             if (orders == null || orders.isEmpty()) {
@@ -28,8 +28,8 @@ public class RouteService {
             allPoints = new ArrayList<>();
             locationIndex = new HashMap<>();
 
-            allPoints.add(aman);
-            locationIndex.put(aman.name, 0);
+            allPoints.add(deliveryExecutive);
+            locationIndex.put(deliveryExecutive.name, 0);
             int idx = 1;
             for (Order o : orders) {
                 if (o.restaurant == null || o.consumer == null) {
